@@ -18,7 +18,7 @@ public class TeamController {
 
     @PostMapping("/teams")
     public ApiResponse<TeamResponse> creatTeam(@Valid @RequestBody TeamCreateRequest request) {
-        return null;
+        return ApiResponse.ok(teamService.createTeam(request.toServiceRequest()));
     }
 
 }
