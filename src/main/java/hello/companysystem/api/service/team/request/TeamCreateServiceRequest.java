@@ -5,12 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class TeamSaveServiceRequest {
+public class TeamCreateServiceRequest {
 
     private String teamName;
 
     @Builder
-    private TeamSaveServiceRequest(String teamName) {
+    private TeamCreateServiceRequest(String teamName) {
         this.teamName = teamName;
     }
 
