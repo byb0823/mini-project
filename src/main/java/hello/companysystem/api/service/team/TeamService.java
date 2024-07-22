@@ -1,6 +1,6 @@
 package hello.companysystem.api.service.team;
 
-import hello.companysystem.api.service.team.request.TeamSaveServiceRequest;
+import hello.companysystem.api.service.team.request.TeamCreateServiceRequest;
 import hello.companysystem.api.service.team.response.TeamResponse;
 import hello.companysystem.domain.team.Team;
 import hello.companysystem.domain.team.TeamRepository;
@@ -16,7 +16,7 @@ public class TeamService {
     private final TeamRepository teamRepository;
 
     @Transactional
-    public TeamResponse createTeam(TeamSaveServiceRequest request) {
+    public TeamResponse createTeam(TeamCreateServiceRequest request) {
         String nextTeamNumber = getNextTeamNumber();
         Team team = request.toEntity(nextTeamNumber);
         Team savedTeam = teamRepository.save(team);
