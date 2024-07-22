@@ -2,9 +2,12 @@ package hello.companysystem.domain.employee;
 
 import hello.companysystem.domain.team.Team;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Employee {
 
