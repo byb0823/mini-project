@@ -27,10 +27,9 @@ public class Team {
     private List<Employee> employees = new ArrayList<>();
 
     @Builder
-    private Team(String teamNumber, String teamName, List<Employee> employees) {
+    private Team(String teamNumber, String teamName) {
         this.teamNumber = teamNumber;
         this.teamName = teamName;
-        this.employees = employees;
     }
 
 }
