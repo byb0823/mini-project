@@ -1,5 +1,6 @@
 package hello.companysystem.domain.employee;
 
+import hello.companysystem.domain.team.Team;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -21,5 +22,8 @@ public class Employee {
     private LocalDate joinDate;
 
     private LocalDate birthDay;
+
+    @ManyToOne
+    private Team team;
 
 }

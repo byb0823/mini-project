@@ -1,9 +1,10 @@
 package hello.companysystem.domain.team;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import hello.companysystem.domain.employee.Employee;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -15,5 +16,8 @@ public class Team {
     private String teamNumber;
 
     private String teamName;
+
+    @OneToMany(mappedBy = "team")
+    private List<Employee> employees = new ArrayList<>();
 
  }
