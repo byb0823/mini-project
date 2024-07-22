@@ -29,8 +29,9 @@ class TeamRepositoryTest {
     @Test
     void findLatestTeamNumber() {
         //given
+        String targetTeamNumber = "001";
         Team team = Team.builder()
-                .teamNumber("001")
+                .teamNumber(targetTeamNumber)
                 .teamName("firstTeam")
                 .build();
         teamRepository.save(team);
@@ -39,7 +40,7 @@ class TeamRepositoryTest {
         String latestTeamNumber = teamRepository.findLatestTeamNumber();
 
         //then
-        assertThat(latestTeamNumber).isEqualTo("001");
+        assertThat(latestTeamNumber).isEqualTo(targetTeamNumber);
     }
 
 }
