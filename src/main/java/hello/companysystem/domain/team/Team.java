@@ -2,10 +2,16 @@ package hello.companysystem.domain.team;
 
 import hello.companysystem.domain.employee.Employee;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Entity
 public class Team {
 
@@ -20,4 +26,11 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private List<Employee> employees = new ArrayList<>();
 
- }
+    @Builder
+    private Team(String teamNumber, String teamName, List<Employee> employees) {
+        this.teamNumber = teamNumber;
+        this.teamName = teamName;
+        this.employees = employees;
+    }
+
+}
