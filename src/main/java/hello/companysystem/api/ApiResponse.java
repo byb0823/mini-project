@@ -1,8 +1,9 @@
 package hello.companysystem.api;
 
-import lombok.Builder;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class ApiResponse<T> {
 
     private int code;
