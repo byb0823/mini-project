@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("test")
@@ -29,18 +31,21 @@ class TeamRepositoryTest {
     @Test
     void findLatestTeamNumber() {
         //given
-        String targetTeamNumber = "001";
-        Team team = Team.builder()
-                .teamNumber(targetTeamNumber)
-                .teamName("firstTeam")
+        Team team1 = Team.builder()
+                .teamNumber("001")
+                .teamName("teamA")
                 .build();
-        teamRepository.save(team);
+        Team team2 = Team.builder()
+                .teamNumber("002")
+                .teamName("teamB")
+                .build();
+        teamRepository.saveAll(List.of(team1, team2));
 
         //when
         String latestTeamNumber = teamRepository.findLatestTeamNumber();
 
         //then
-        assertThat(latestTeamNumber).isEqualTo(targetTeamNumber);
+        assertThat(latestTeamNumber).isEqualTo("002");
     }
 
 }
