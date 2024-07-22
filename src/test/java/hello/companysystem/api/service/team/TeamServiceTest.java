@@ -24,7 +24,7 @@ class TeamServiceTest {
     @Autowired
     private TeamRepository teamRepository;
 
-    @DisplayName("팀 등록 시 팀 번호와 이름을 지정해야 한다.")
+    @DisplayName("팀을 저장할 때 등록된 팀이 없다면 팀 번호는 001이며 팀 이름을 지정해야 한다.")
     @Test
     void createTeamFirst() {
         //given
@@ -40,5 +40,28 @@ class TeamServiceTest {
                 .extracting("teamNumber", "teamName")
                 .contains("001", "teamA");
 
+    }
+
+    @DisplayName("팀 등록 시 팀 번호는 마지막으로 등록된 팀 번호에 1을 더한 값이며 이름을 지정해야 한다.")
+    @Test
+    void createTeam() {
+        //given
+        Team team = Team.builder()
+                .teamNumber("001")
+                .teamName("teamA")
+                .build();
+        teamRepository.save(team);
+
+        TeamSaveServiceRequest request = TeamSaveServiceRequest.builder()
+                .teamName("teamB")
+                .build();
+
+        //when
+        TeamResponse teamResponse = teamService.createTeam(request);
+
+        //then
+        assertThat(teamResponse)
+                .extracting("teamNumber", "teamName")
+                .contains("002", "teamB");
     }
 }
