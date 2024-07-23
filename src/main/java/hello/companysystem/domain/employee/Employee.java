@@ -24,7 +24,7 @@ public class Employee {
 
     private LocalDate joinDate;
 
-    private LocalDate birthDay;
+    private LocalDate birthday;
 
     @ManyToOne
     private Team team;
