@@ -4,6 +4,7 @@ import hello.companysystem.api.service.team.request.TeamCreateServiceRequest;
 import hello.companysystem.api.service.team.response.TeamResponse;
 import hello.companysystem.domain.team.Team;
 import hello.companysystem.domain.team.TeamRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ class TeamServiceTest {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @AfterEach
+    void tearDown() {
+        teamRepository.deleteAllInBatch();
+    }
 
     @DisplayName("팀을 저장할 때 등록된 팀이 없다면 팀 번호는 001이며 팀 이름을 지정해야 한다.")
     @Test
