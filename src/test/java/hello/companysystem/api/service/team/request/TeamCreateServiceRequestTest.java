@@ -3,9 +3,11 @@ package hello.companysystem.api.service.team.request;
 import hello.companysystem.domain.team.Team;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.*;
 
+@ActiveProfiles("test")
 class TeamCreateServiceRequestTest {
 
     @DisplayName("팀 번호를 받아 팀 엔티티를 생성한다.")
