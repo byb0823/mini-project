@@ -8,4 +8,5 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
     @Query(value = "select team_number from team order by id desc limit 1", nativeQuery = true)
     String findLatestTeamNumber();
 
+    Team findByTeamName(String undefined);
 }
