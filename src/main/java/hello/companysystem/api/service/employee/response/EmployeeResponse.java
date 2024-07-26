@@ -2,12 +2,13 @@ package hello.companysystem.api.service.employee.response;
 
 import hello.companysystem.domain.employee.Employee;
 import hello.companysystem.domain.employee.Role;
-import hello.companysystem.domain.team.Team;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Getter
 public class EmployeeResponse {
 
