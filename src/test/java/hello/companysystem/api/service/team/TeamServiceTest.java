@@ -68,4 +68,24 @@ class TeamServiceTest {
                 .extracting("teamNumber", "teamName")
                 .contains("002", "teamB");
     }
+
+    @DisplayName("팀 이름이 중복되어서는 안된다.")
+    @Test
+    void createTeamNameDuplicate() {
+        //given
+        Team team = Team.builder()
+                .teamNumber("001")
+                .teamName("teamA")
+                .build();
+        teamRepository.save(team);
+
+        TeamCreateServiceRequest request = TeamCreateServiceRequest.builder()
+                .teamName("teamA")
+                .build();
+
+        //when //then
+        assertThatThrownBy(() -> teamService.createTeam(request))
+                .hasMessage("중복된 팀 이름은 사용할 수 없습니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
