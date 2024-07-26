@@ -17,6 +17,9 @@ public class TeamService {
 
     @Transactional
     public TeamResponse createTeam(TeamCreateServiceRequest request) {
+        if (isTeamNameExist(request.getTeamName())) {
+            throw new IllegalArgumentException("중복된 팀 이름은 사용할 수 없습니다.");
+        }
         String nextTeamNumber = getNextTeamNumber();
         Team team = request.toEntity(nextTeamNumber);
         Team savedTeam = teamRepository.save(team);
@@ -30,5 +33,9 @@ public class TeamService {
         }
         int nextTeamNumber = Integer.parseInt(latestTeamNumber) + 1;
         return String.format("%03d", nextTeamNumber);
+    }
+
+    private boolean isTeamNameExist(String teamName) {
+        return teamRepository.findByTeamName(teamName) != null;
     }
 }
