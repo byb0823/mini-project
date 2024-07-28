@@ -26,6 +26,10 @@ public class TeamService {
         return TeamResponse.of(savedTeam);
     }
 
+    private boolean isTeamNameExist(String teamName) {
+        return teamRepository.findByTeamName(teamName) != null;
+    }
+
     private String getNextTeamNumber() {
         String latestTeamNumber = teamRepository.findLatestTeamNumber();
         if (latestTeamNumber == null) {
@@ -33,9 +37,5 @@ public class TeamService {
         }
         int nextTeamNumber = Integer.parseInt(latestTeamNumber) + 1;
         return String.format("%03d", nextTeamNumber);
-    }
-
-    private boolean isTeamNameExist(String teamName) {
-        return teamRepository.findByTeamName(teamName) != null;
     }
 }
