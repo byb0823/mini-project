@@ -25,6 +25,9 @@ public class EmployeeService {
         String nextEmployeeNumber = getNextEmployeeNumber();
 
         Team team = findTeamByTeamName(request.getTeamName());
+        if (team == null) {
+            throw new IllegalArgumentException("존재하지 않는 팀 이름입니다.");
+        }
 
         Employee employee = request.toEntity(nextEmployeeNumber, team);
         Employee savedEmployee = employeeRepository.save(employee);
