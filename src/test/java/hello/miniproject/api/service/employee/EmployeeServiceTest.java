@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import static hello.companysystem.domain.employee.Role.MEMBER;
 import static hello.companysystem.domain.team.TeamConst.UNDEFINED;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -140,6 +141,53 @@ class EmployeeServiceTest {
         assertThat(response)
                 .extracting("employeeNumber", "name", "role", "joinDate", "birthday", "teamName")
                 .contains("001", "nameA", MEMBER, joinDate, birthday, UNDEFINED);
+    }
+
+    @DisplayName("직원 등록 시 팀 이름을 입력하면 해당 팀에 배치된다.")
+    @Test
+    void createEmployeeWithTeamName() {
+        //given
+        String targetTeamName = "teamA";
+        Team team = Team.builder()
+                .teamNumber("001")
+                .teamName(targetTeamName)
+                .build();
+        teamRepository.save(team);
+
+        EmployeeCreateServiceRequest request = EmployeeCreateServiceRequest.builder()
+                .name("nameA")
+                .role(MEMBER)
+                .joinDate(LocalDate.now())
+                .birthday(LocalDate.now())
+                .teamName(targetTeamName)
+                .build();
+
+        //when
+        EmployeeResponse response = employeeService.createEmployee(request);
+
+        //then
+        assertThat(response)
+                .extracting("name", "teamName")
+                .contains("nameA", targetTeamName);
+
+    }
+
+    @DisplayName("직원 등록 시 없는 팀 이름을 입력하면 예외가 발생한다.")
+    @Test
+    void createEmployeeWithNotExistTeamName() {
+        //given
+        EmployeeCreateServiceRequest request = EmployeeCreateServiceRequest.builder()
+                .name("nameA")
+                .role(MEMBER)
+                .joinDate(LocalDate.now())
+                .birthday(LocalDate.now())
+                .teamName("teamA")
+                .build();
+
+        //when //then
+        assertThatThrownBy(() -> employeeService.createEmployee(request))
+                .hasMessage("존재하지 않는 팀 이름입니다.")
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
