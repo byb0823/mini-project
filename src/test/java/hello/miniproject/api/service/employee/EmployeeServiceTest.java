@@ -1,11 +1,11 @@
-package hello.companysystem.api.service.employee;
+package hello.miniproject.api.service.employee;
 
-import hello.companysystem.api.service.employee.request.EmployeeCreateServiceRequest;
-import hello.companysystem.api.service.employee.response.EmployeeResponse;
-import hello.companysystem.domain.employee.Employee;
-import hello.companysystem.domain.employee.EmployeeRepository;
-import hello.companysystem.domain.team.Team;
-import hello.companysystem.domain.team.TeamRepository;
+import hello.miniproject.api.service.employee.request.EmployeeCreateServiceRequest;
+import hello.miniproject.api.service.employee.response.EmployeeResponse;
+import hello.miniproject.domain.employee.Employee;
+import hello.miniproject.domain.employee.EmployeeRepository;
+import hello.miniproject.domain.team.Team;
+import hello.miniproject.domain.team.TeamRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,12 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-import static hello.companysystem.domain.employee.Role.MEMBER;
-import static hello.companysystem.domain.team.TeamConst.UNDEFINED;
+import static hello.miniproject.domain.employee.Role.MEMBER;
+import static hello.miniproject.domain.team.TeamConst.UNDEFINED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

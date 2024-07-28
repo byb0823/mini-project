@@ -1,16 +1,16 @@
-package hello.companysystem.api.service.employee;
+package hello.miniproject.api.service.employee;
 
-import hello.companysystem.api.service.employee.request.EmployeeCreateServiceRequest;
-import hello.companysystem.api.service.employee.response.EmployeeResponse;
-import hello.companysystem.domain.employee.Employee;
-import hello.companysystem.domain.employee.EmployeeRepository;
-import hello.companysystem.domain.team.Team;
-import hello.companysystem.domain.team.TeamRepository;
+import hello.miniproject.api.service.employee.request.EmployeeCreateServiceRequest;
+import hello.miniproject.api.service.employee.response.EmployeeResponse;
+import hello.miniproject.domain.employee.Employee;
+import hello.miniproject.domain.employee.EmployeeRepository;
+import hello.miniproject.domain.team.Team;
+import hello.miniproject.domain.team.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static hello.companysystem.domain.team.TeamConst.*;
+import static hello.miniproject.domain.team.TeamConst.*;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
